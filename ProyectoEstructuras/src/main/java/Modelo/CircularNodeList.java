@@ -13,6 +13,32 @@ public class CircularNodeList<E> {
     private E content;
     private CircularNodeList<E> next;
     private CircularNodeList<E> previous;
+
+    public E getContent() {
+        return content;
+        
+            
+        }
+
+    public CircularNodeList<E> getNext() {
+        return next;
+    }
+
+    public CircularNodeList<E> getPrevious() {
+        return previous;
+    }
+
+    public void setContent(E content) {
+        this.content = content;
+    }
+
+    public void setNext(CircularNodeList<E> next) {
+        this.next = next;
+    }
+
+    public void setPrevious(CircularNodeList<E> previous) {
+        this.previous = previous;
+    }
     
     
 }

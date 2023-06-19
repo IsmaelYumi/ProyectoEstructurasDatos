@@ -63,5 +63,23 @@ public class DoubleCircleLinkedList<E> implements List<E> {
     public boolean isEmpty(){
         return this.last==null;
     }
+
+    @Override
+    public  CircularNodeList<E>  getNext(CircularNodeList<E> nodo) {
+        if(this.isEmpty()|| nodo==null){
+            return null;     
+    }
+         CircularNodeList<E> p ;
+         p=this.last;
+         do {
+             if(p.getPrevious()==nodo){
+                 return p;
+             }
+             p=p.getNext();
+             
+         }while(p!=this.last);
+         return null;
+                 
     
+}
 }
