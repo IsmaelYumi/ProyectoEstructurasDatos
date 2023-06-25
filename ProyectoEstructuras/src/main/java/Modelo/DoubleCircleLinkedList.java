@@ -129,9 +129,12 @@ public class DoubleCircleLinkedList<E> implements List<E> {
             CircularNodeList<E> nodoAnterior = nodoViajero.getPrevious();
             CircularNodeList<E> nodoPosterior = nodoViajero.getNext();
 
+           
             nodoAnterior.setNext(nodoPosterior);
             nodoPosterior.setPrevious(nodoAnterior);
-
+            
+            //El nodo a eliminar no tendrá nada apuntandolo por lo que se lo llevará el garbage collector;
+            
             if (nodoEliminar.equals(last)) {
                 last = nodoAnterior;
             }
