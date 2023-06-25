@@ -4,10 +4,15 @@
  */
 package Modelo;
 
+
 /**
  *
  * @author yumip
+ * @param <E>
  */
+
+
+
 public interface List <E>{
     public boolean add(E element, int index);
     public E getByIndex(int index);
@@ -16,7 +21,7 @@ public interface List <E>{
      public boolean addLast(E element);
     public CircularNodeList<E> getPrevious(CircularNodeList<E> nodo);
     public CircularNodeList<E> getNext(CircularNodeList<E> nodo);
-     
+    public boolean delete(E content);
     
     
     
