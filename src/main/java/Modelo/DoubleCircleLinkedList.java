@@ -16,10 +16,21 @@ public class DoubleCircleLinkedList<E> implements List<E> {
 
     private CircularNodeList<E> last;
     private int size;
+    
+    public int getSize(){
+        return size;
+    }
 
     @Override
     public E getByIndex(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody        
+        int contador=0;
+        for(CircularNodeList<E> nodo=last.getNext(); nodo!=last;nodo=nodo.getNext()){
+            if(contador==index){
+                return nodo.getContent();
+            }               
+        }
+        throw new IndexOutOfBoundsException("Indice fuera de rango");
+        
     }
 
     @Override

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="834.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="CREADOR DE EMOJIS">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <font>
+            <Font name="Consolas" size="48.0" />
+         </font>
+      </Label>
+      <Pane prefHeight="194.0" prefWidth="834.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="317.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagenes/faces/faces_1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <HBox fx:id="ContainerLista" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" />
+   </children>
+   <padding>
+      <Insets top="10.0" />
+   </padding>
+</VBox>
