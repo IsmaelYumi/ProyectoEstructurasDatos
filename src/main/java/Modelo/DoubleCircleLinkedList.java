@@ -24,13 +24,13 @@ public class DoubleCircleLinkedList<E> implements List<E> {
     @Override
     public E getByIndex(int index) {
         int contador=0;
-        for(CircularNodeList<E> nodo=last.getNext(); nodo!=last;nodo=nodo.getNext()){
+        for(CircularNodeList<E> nodo=last.getNext();nodo!=null ;nodo=nodo.getNext()){
             if(contador==index){
                 return nodo.getContent();
-            }               
+            }
+            contador++;
         }
-        throw new IndexOutOfBoundsException("Indice fuera de rango");
-        
+        throw new IndexOutOfBoundsException("Indice fuera de rango");      
     }
 
     @Override
@@ -46,12 +46,10 @@ public class DoubleCircleLinkedList<E> implements List<E> {
     @Override
     public boolean addFirst(E element) {
         if (!isEmpty()) {
-
             return true;
         } else {
             return false;
         }
-
     }
 
     @Override
@@ -74,7 +72,6 @@ public class DoubleCircleLinkedList<E> implements List<E> {
             nuevo.setPrevious(last);
             last.getNext().setPrevious(nuevo);
             last = nuevo;
-
             size++;
             return true;
         }

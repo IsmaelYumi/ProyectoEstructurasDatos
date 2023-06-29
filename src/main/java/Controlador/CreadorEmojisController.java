@@ -34,12 +34,15 @@ public class CreadorEmojisController implements Initializable {
         // TODO
     }
     public void CargarListas(){
-        //Crea las listas de manera Visible,
-        File Carpeta=new File("/Imagenes/accesories");
+        //Crea las listas de manera Visible,la lista se supone q crea Imageviewers y lso pone en el conainer de la lista que es un Hbox , pero no funciona bien
+        //falta implementar 
+        File Carpeta=new File("src/main/resources/Imagenes/accessories");
         DoubleCircleLinkedList<Image> ListaAccesorios=manejadorArchivos.cargarArchivos(Carpeta);
         for(int i=0; i<ListaAccesorios.getSize();i++){
+            String nombre=ListaAccesorios.getByIndex(i).toString();
+            System.out.println(nombre);
              ImageView imv=new ImageView(ListaAccesorios.getByIndex(i));
-             ContainerLista.getChildren().add(imv);
+            ContainerLista.getChildren().add(imv);
             
         }
  
