@@ -1,2 +1,8 @@
+Modelo\CircularNodeList.class
+Controlador\LoguinController.class
 module-info.class
+Controlador\CreadorEmojisController.class
 Controlador\App.class
+Controlador\manejadorArchivos.class
+Modelo\DoubleCircleLinkedList.class
+Modelo\List.class

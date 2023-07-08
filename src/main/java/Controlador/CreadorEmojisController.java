@@ -29,17 +29,17 @@ public class CreadorEmojisController implements Initializable {
     private HBox ContenedorLista;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         CargarListas();
+         CargarListas("accessories");
         //CargarListas("eyes");
         //CargarListas("faces");
         //CargarListas("mouth");
         
         // TODO
     }
-    public void CargarListas(){
+    public void CargarListas(String archivo){
         //Crea las listas de manera Visible,la lista se supone q crea Imageviewers y lso pone en el conainer de la lista que es un Hbox , pero no funciona bien
         //falta implementar 
-        String Path="src/main/resources/Imagenes/accesories";
+        String Path="src\\main\\resources\\Imagenes\\"+archivo;
         DoubleCircleLinkedList<Image> ListaAccesorios=manejadorArchivos.cargarArchivos(Path);
         for(int i=0; i<ListaAccesorios.getSize();i++){
             Image imagen=ListaAccesorios.getByIndex(i);
