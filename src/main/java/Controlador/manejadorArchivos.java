@@ -36,7 +36,7 @@ public class manejadorArchivos {
         //Asumo que las imagenes que me dan están en png
         try{
         for (File archivo:archivos){
-           Image im= new Image("Imagenes/"+ruta[-1]+"/"+archivo.getName(),50,0,true,false);
+           Image im= new Image("/Imagenes/"+ruta[4]+"/"+archivo.getName(),50,0,true,false);
 
            listaReturn.addLast(im);  
         }
