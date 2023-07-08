@@ -26,24 +26,27 @@ public class CreadorEmojisController implements Initializable {
      * Initializes the controller class.
      */
      @FXML
-    private HBox ContainerLista;
+    private HBox ContenedorLista;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        CargarListas();
+         CargarListas();
+        //CargarListas("eyes");
+        //CargarListas("faces");
+        //CargarListas("mouth");
         
         // TODO
     }
     public void CargarListas(){
         //Crea las listas de manera Visible,la lista se supone q crea Imageviewers y lso pone en el conainer de la lista que es un Hbox , pero no funciona bien
         //falta implementar 
-        File Carpeta=new File("src/main/resources/Imagenes/accessories");
-        DoubleCircleLinkedList<Image> ListaAccesorios=manejadorArchivos.cargarArchivos(Carpeta);
+        String Path="src/main/resources/Imagenes/accesories";
+        DoubleCircleLinkedList<Image> ListaAccesorios=manejadorArchivos.cargarArchivos(Path);
         for(int i=0; i<ListaAccesorios.getSize();i++){
-            String nombre=ListaAccesorios.getByIndex(i).toString();
-            System.out.println(nombre);
-             ImageView imv=new ImageView(ListaAccesorios.getByIndex(i));
-            ContainerLista.getChildren().add(imv);
-            
+            Image imagen=ListaAccesorios.getByIndex(i);
+            System.out.println("Bineaqui");
+            ImageView imv=new ImageView(imagen);
+            imv.setFitWidth(50);
+            ContenedorLista.getChildren().add(imv);
         }
  
         

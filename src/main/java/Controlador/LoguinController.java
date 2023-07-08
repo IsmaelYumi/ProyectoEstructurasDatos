@@ -8,6 +8,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import Modelo.CircularNodeList;
+import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
 /**
  * FXML Controller class
@@ -22,7 +25,11 @@ public class LoguinController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
-        // TODO
+    }
+     @FXML
+    void Ingresar(ActionEvent event) throws IOException {
+        App.setRoot("/Vistas/CreadorEmojis");
+
     }
     
     
