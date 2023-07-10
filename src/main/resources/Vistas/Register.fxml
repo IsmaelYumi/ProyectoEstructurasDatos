@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="471.0" prefWidth="555.0" style="-fx-background-color: #3282b5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.RegisterController">
+   <children>
+      <VBox layoutX="129.0" layoutY="90.0" prefHeight="200.0" prefWidth="297.0" spacing="10.0" style="-fx-background-color: #0e4c75;">
+         <children>
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="214.0" text="REGISTER" textAlignment="CENTER" textFill="#bbe1f8">
+               <font>
+                  <Font name="Constantia" size="40.0" />
+               </font>
+            </Label>
+            <Label text="Nombre" textFill="#bbe1f8" />
+            <TextField fx:id="usernameField" />
+            <Label maxWidth="1.7976931348623157E308" text="Contraseña" textFill="#bbe1f8">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="passwordField" />
+            <Button id="windows" fx:id="registroButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../stylesheet.css" text="Registrar" />
+            <Button id="windows" fx:id="atrasButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../stylesheet.css" text="Atras" />
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

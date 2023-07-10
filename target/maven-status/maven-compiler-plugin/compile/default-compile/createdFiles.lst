@@ -6,3 +6,4 @@ Controlador\App.class
 Controlador\manejadorArchivos.class
 Modelo\DoubleCircleLinkedList.class
 Modelo\List.class
+Controlador\RegisterController.class
