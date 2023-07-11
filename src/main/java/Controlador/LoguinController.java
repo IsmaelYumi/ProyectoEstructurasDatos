@@ -47,8 +47,8 @@ public class LoguinController implements Initializable {
     void Ingresar(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        App.setRoot("/Vistas/CreadorEmojis");
-        //login(username,password);
+        //App.setRoot("/Vistas/CreadorEmojis");
+        login(username,password);
     }
     
     private static void vistaRegistro() throws IOException {

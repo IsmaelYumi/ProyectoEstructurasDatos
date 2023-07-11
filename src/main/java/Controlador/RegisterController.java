@@ -39,9 +39,12 @@ public class RegisterController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        registeredUsers = loadRegisteredUsers();
-       String username = usernameField.getText();
-       String password = passwordField.getText();
-       registroButton.setOnAction(e -> registerUser(username,password));
+       System.out.println(registeredUsers);
+       registroButton.setOnAction(e -> {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            registerUser(username, password);
+        });
        atrasButton.setOnAction(e -> {
           try {
               vistaLogin();
@@ -63,6 +66,7 @@ public class RegisterController implements Initializable{
         saveRegisteredUsers();
 
         System.out.println("El usuario ha sido registrado exitosamente.");
+        System.out.println(registeredUsers);
     }
     
     private static Map<String, String> loadRegisteredUsers() {
