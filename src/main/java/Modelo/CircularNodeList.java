@@ -15,7 +15,7 @@ public class CircularNodeList<E> {
     private CircularNodeList<E> previous;
 
     
-    public CircularNodeList(E elemento){
+    public CircularNodeList (E elemento){
         this.content= elemento;
         
     }
