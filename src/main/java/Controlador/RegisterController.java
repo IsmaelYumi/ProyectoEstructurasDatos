@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -25,7 +26,7 @@ import javafx.scene.control.TextField;
 public class RegisterController implements Initializable{
     
     private static final String USERS_FILE = "users.txt";
-    private static Map<String, String> registeredUsers;
+    public static Map<String, String> registeredUsers;
 
     @FXML
     private TextField usernameField;
@@ -58,6 +59,11 @@ public class RegisterController implements Initializable{
     private static void registerUser(String username ,String password) {
         
         if (registeredUsers.containsKey(username)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText(null);
+            alert.setContentText("El usuario ya está registrado. Por favor, elija otro nombre de usuario.");
+            alert.showAndWait();
             System.out.println("El usuario ya está registrado. Por favor, elija otro nombre de usuario.");
             return;
         }
@@ -69,7 +75,7 @@ public class RegisterController implements Initializable{
         System.out.println(registeredUsers);
     }
     
-    private static Map<String, String> loadRegisteredUsers() {
+    public static Map<String, String> loadRegisteredUsers() {
         Map<String, String> users = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE))) {

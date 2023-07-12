@@ -4,6 +4,8 @@
  */
 package Controlador;
 
+import static Controlador.RegisterController.loadRegisteredUsers;
+import static Controlador.RegisterController.registeredUsers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -12,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -34,6 +37,8 @@ public class LoguinController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+      registeredUsers = loadRegisteredUsers();
+      System.out.println(registeredUsers);
       registarButton.setOnAction(e -> {
           try {
               vistaRegistro();
@@ -57,10 +62,14 @@ public class LoguinController implements Initializable {
     
     private static void login(String username ,String password) throws IOException {
 
-        if (RegisterController.getRegisteredUsers().containsKey(username) && RegisterController.getRegisteredUsers().get(username).equals(password)) {
-            System.out.println("Inicio de sesión exitoso. ¡Bienvenido!");
+        if (registeredUsers.containsKey(username) && registeredUsers.get(username).equals(password)) {
             App.setRoot("/Vistas/CreadorEmojis");
         } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText(null);
+            alert.setContentText("Nombre de usuario o contraseña incorrectos.");
+            alert.showAndWait();
             System.out.println("Nombre de usuario o contraseña incorrectos.");
         }
     }
