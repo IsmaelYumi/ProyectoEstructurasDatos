@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import Controlador.manejadorArchivos;
+import Modelo.CircularNodeList;
 import java.io.File;
 import javafx.scene.image.Image;
 import Modelo.DoubleCircleLinkedList;
@@ -31,9 +32,13 @@ public class CreadorEmojisController<E> implements Initializable {
      */
      @FXML
     private HBox ContenedorLista;
+     
+     final CircularNodeList[] arrDisplay= new CircularNodeList[5];
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          CargarListas("accessories");
+         actualizarVista();
         //CargarListas("eyes");
         //CargarListas("faces");
         //CargarListas("mouth");
@@ -44,39 +49,36 @@ public class CreadorEmojisController<E> implements Initializable {
         //falta implementar 
         String Path="src/main/resources/Imagenes/"+archivo;
         DoubleCircleLinkedList<Image> ListaAccesorios=manejadorArchivos.cargarArchivos(Path);
+        
         for(int i=0; i<5;i++){
-            Image imagen=ListaAccesorios.getByIndex(i).getContent();
-            ImageView imv=new ImageView(imagen);
-            imv.setFitWidth(50);
-            ContenedorLista.getChildren().add(imv);
+            CircularNodeList referenciaNodo=ListaAccesorios.getByIndex(i);
+            arrDisplay[i]=referenciaNodo;
         }  
+        
 }
-     private ObservableList ObtenerListaActual(HBox contenedor){
-         ObservableList listaFigura= contenedor.getChildren();
-        return listaFigura;
+     private void actualizarVista(){
+         ContenedorLista.getChildren().clear();
+         for(int i=0;i<arrDisplay.length;i++){
+             //Peligroso
+             Image img=(Image) arrDisplay[i].getContent();
+             ImageView imgv= new ImageView(img);
+             ContenedorLista.getChildren().add(imgv);
+         }
+         
+         
+         
     }
     @FXML
     void CambiarLista(ActionEvent event) {
-      ObservableList<ImageView> listaFigura=ObtenerListaActual(ContenedorLista);
-      DoubleCircleLinkedList<Image> ListaAccesorios=manejadorArchivos.cargarArchivos("src/main/resources/Imagenes/accessories");
-      for(int i=0;i<5;i++){
-          for(int j=0 ; j<ListaAccesorios.getSize();j++){
-              Image imagen= listaFigura.get(i).getImage();
-              if(imagen.getUrl().equals(ListaAccesorios.getByIndex(j).getContent().getUrl())){
-                Image NuevaImage= ListaAccesorios.getByIndex(j).getNext().getContent();
-                ImageView NuevoContenedor= new ImageView(NuevaImage);
-                listaFigura.set(j, NuevoContenedor);
-              }
-              
-          }
-         
-         
-          
-      }
-      
-     
-    
-      }
+        for(int i=0; i<arrDisplay.length;i++){
+            arrDisplay[i]=arrDisplay[i].getNext();
+        }
+        
+        actualizarVista();
+        
+        
+  
+    }
     }
 
 
