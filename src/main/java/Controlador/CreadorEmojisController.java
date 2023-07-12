@@ -38,7 +38,8 @@ public class CreadorEmojisController<E> implements Initializable {
      */
      @FXML
     private HBox ContenedorLista;
-    private ImageView ContenedorImagen;
+    private ImageView ContenedorImagen=new ImageView();
+    private Image Imagenfoco;
      
      final CircularNodeList[] arrDisplay= new CircularNodeList[5];
      String Lista="Caras";
@@ -57,6 +58,8 @@ public class CreadorEmojisController<E> implements Initializable {
     private RadioButton Ojos;
     
     public  ToggleGroup tg = new ToggleGroup();
+   
+   
 
      
     @Override
@@ -97,14 +100,15 @@ public class CreadorEmojisController<E> implements Initializable {
              
                }
          
-     }});
-            ContenedorImagen.setOnMouseClicked(  new EventHandler<MouseEvent>() {
-             @Override
-             public void handle(MouseEvent event) {
-                 System.out.println("hola");
-             }
-         });
-    
+     }});//Metodo para ponerle eventos a los image view pero no funciona
+            //ContenedorImagen.setOnMouseClicked(  new EventHandler<MouseEvent>() {
+            // @Override
+            // public void handle(MouseEvent event) {
+            //     Imagenfoco=ContenedorImagen.getImage();
+            //     System.out.println(Imagenfoco.getUrl());
+           //  }
+        // });  
+        
      
              }
     
@@ -112,10 +116,13 @@ public class CreadorEmojisController<E> implements Initializable {
         //Crea las listas de manera Visible,la lista se supone q crea Imageviewers y lso pone en el conainer de la lista que es un Hbox , pero no funciona bien
         //falta implementar 
         String Path="src/main/resources/Imagenes/"+archivo;
-        DoubleCircleLinkedList<Image> ListaAccesorios=manejadorArchivos.cargarArchivos(Path);
+        DoubleCircleLinkedList<ImageView> ListaAccesorios=manejadorArchivos.cargarArchivos(Path);
         for(int i=0; i<5;i++){
-            CircularNodeList referenciaNodo=ListaAccesorios.getByIndex(i);
+            CircularNodeList<ImageView> referenciaNodo=ListaAccesorios.getByIndex(i);
+           
             arrDisplay[i]=referenciaNodo;
+            
+           
         }  
         
 }
@@ -123,9 +130,17 @@ public class CreadorEmojisController<E> implements Initializable {
          ContenedorLista.getChildren().clear();
          for(int i=0;i<arrDisplay.length;i++){
              //Peligroso
-             Image img=(Image) arrDisplay[i].getContent();
-             ContenedorImagen=new ImageView(img);
-              ContenedorLista.getChildren().add(ContenedorImagen);
+             ImageView img=(ImageView) arrDisplay[i].getContent();
+              img.setOnMouseClicked(  new EventHandler<MouseEvent>() {
+             @Override
+             public void handle(MouseEvent event) {
+                Imagenfoco=img.getImage();
+             }
+        });
+             ContenedorLista.getChildren().add(img);
+               
+             
+              
          }
               
     }
@@ -145,6 +160,7 @@ public class CreadorEmojisController<E> implements Initializable {
         }
         actualizarVista();
     }
+    
     
    
      

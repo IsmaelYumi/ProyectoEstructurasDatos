@@ -20,7 +20,8 @@ public class manejadorArchivos {
 
     
      //Podría de una vez retornar una lista de imagenes según el directorio, puede ser el de sonrisas entre otros.
-    public static DoubleCircleLinkedList<Image> cargarArchivos(String carpeta) {
+    public static DoubleCircleLinkedList<ImageView> cargarArchivos(String carpeta)//regresa una lista hecha con lso imageviews
+    {
         File carpetaPrincipal= new File(carpeta);
         File[] archivos = carpetaPrincipal.listFiles();
         System.out.println(carpetaPrincipal);
@@ -30,15 +31,15 @@ public class manejadorArchivos {
         }
         String [] ruta=carpeta.split("/");
         
-        DoubleCircleLinkedList<Image> listaReturn= new DoubleCircleLinkedList();
+        DoubleCircleLinkedList<ImageView> listaReturn= new DoubleCircleLinkedList();
         
         //System.out.println(listaReturn.toString());
         //Asumo que las imagenes que me dan están en png
         try{
         for (File archivo:archivos){
            Image im= new Image("/Imagenes/"+ruta[4]+"/"+archivo.getName(),50,0,true,false);
-
-           listaReturn.addLast(im);  
+           ImageView img=new ImageView(im);
+           listaReturn.addLast(img);  
         }
         }catch(Exception i){
             i.printStackTrace();
