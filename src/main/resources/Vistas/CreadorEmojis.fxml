@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -19,34 +20,29 @@
          </font>
       </Label>
       <StackPane fx:id="rLst" prefHeight="150.0" prefWidth="200.0" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+         <children>
+            <RadioButton fx:id="Caras" mnemonicParsing="false" text="Caras" />
+            <RadioButton fx:id="Cejas" mnemonicParsing="false" text="Cejas" />
+            <RadioButton fx:id="Accesorios" mnemonicParsing="false" text="Accesorios" />
+            <RadioButton fx:id="Ojos" mnemonicParsing="false" text="Ojos" />
+            <RadioButton fx:id="Bocas" mnemonicParsing="false" text="Bocas" />
+         </children>
+      </HBox>
       <HBox id="ContenedorListas" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button mnemonicParsing="false" text="&lt;" />
+                  <Button mnemonicParsing="false" onAction="#CambiarListaAtras" text="&lt;" />
                </children>
             </VBox>
-            <HBox fx:id="ContenedorLista" alignment="CENTER" prefHeight="150.0" prefWidth="210.0" spacing="5.0" />
+            <HBox fx:id="ContenedorLista" alignment="CENTER" prefHeight="150.0" prefWidth="210.0" spacing="8.0" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#CambiarLista" text="&gt;" />
                </children>
             </VBox>
          </children></HBox>
-      <HBox id="ContenedorListas" alignment="TOP_CENTER" layoutX="10.0" layoutY="287.0" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
-         </children>
-      </HBox>
-      <HBox id="ContenedorListas" alignment="TOP_CENTER" layoutX="10.0" layoutY="417.0" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
-         </children>
-      </HBox>
    </children>
    <padding>
       <Insets top="10.0" />
