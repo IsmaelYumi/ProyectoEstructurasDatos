@@ -15,7 +15,7 @@ package Modelo;
 
 public interface List <E>{
     public boolean add(E element, int index);
-    public E getByIndex(int index);
+    public  CircularNodeList<E> getByIndex(int index);
     public boolean remover(int index);
     public boolean addFirst(E element); 
      public boolean addLast(E element);

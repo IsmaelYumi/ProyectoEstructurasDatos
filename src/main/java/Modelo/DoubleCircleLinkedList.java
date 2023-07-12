@@ -22,11 +22,11 @@ public class DoubleCircleLinkedList<E> implements List<E> {
     }
 
     @Override
-    public E getByIndex(int index) {
+    public CircularNodeList<E> getByIndex(int index) {
         int contador=0;
         for(CircularNodeList<E> nodo=last.getNext();nodo!=null ;nodo=nodo.getNext()){
             if(contador==index){
-                return nodo.getContent();
+                return nodo;
             }
             contador++;
         }
@@ -70,7 +70,6 @@ public class DoubleCircleLinkedList<E> implements List<E> {
             nuevo.setNext(last.getNext());
             last.setNext(nuevo);
             nuevo.setPrevious(last);
-            last.getNext().setPrevious(nuevo);
             last = nuevo;
             size++;
             return true;

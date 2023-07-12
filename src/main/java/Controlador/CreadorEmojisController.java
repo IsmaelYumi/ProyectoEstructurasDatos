@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import Modelo.DoubleCircleLinkedList;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -44,7 +45,7 @@ public class CreadorEmojisController<E> implements Initializable {
         String Path="src/main/resources/Imagenes/"+archivo;
         DoubleCircleLinkedList<Image> ListaAccesorios=manejadorArchivos.cargarArchivos(Path);
         for(int i=0; i<5;i++){
-            Image imagen=ListaAccesorios.getByIndex(i);
+            Image imagen=ListaAccesorios.getByIndex(i).getContent();
             ImageView imv=new ImageView(imagen);
             imv.setFitWidth(50);
             ContenedorLista.getChildren().add(imv);
@@ -55,10 +56,19 @@ public class CreadorEmojisController<E> implements Initializable {
         return listaFigura;
     }
     @FXML
-    void CambiarLista(MouseEvent event) {
-      ObservableList listaFigura=ObtenerListaActual(ContenedorLista);
+    void CambiarLista(ActionEvent event) {
+      ObservableList<ImageView> listaFigura=ObtenerListaActual(ContenedorLista);
       DoubleCircleLinkedList<Image> ListaAccesorios=manejadorArchivos.cargarArchivos("src/main/resources/Imagenes/accessories");
-      for(int i=0;i<ListaAccesorios.getSize();i++){
+      for(int i=0;i<5;i++){
+          for(int j=0 ; j<ListaAccesorios.getSize();j++){
+              Image imagen= listaFigura.get(i).getImage();
+              if(imagen.getUrl().equals(ListaAccesorios.getByIndex(j).getContent().getUrl())){
+                Image NuevaImage= ListaAccesorios.getByIndex(j).getNext().getContent();
+                ImageView NuevoContenedor= new ImageView(NuevaImage);
+                listaFigura.set(j, NuevoContenedor);
+              }
+              
+          }
          
          
           
