@@ -31,6 +31,18 @@
             <RadioButton fx:id="Accesorios" mnemonicParsing="false" text="Accesorios" />
             <RadioButton fx:id="Ojos" mnemonicParsing="false" text="Ojos" />
             <RadioButton fx:id="Bocas" mnemonicParsing="false" text="Bocas" />
+            <VBox alignment="TOP_CENTER" prefHeight="79.0" prefWidth="80.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnDeshacer" mnemonicParsing="false" onAction="#deshacer" prefHeight="25.0" prefWidth="86.0" text="Deshacer" />
+                  <Button fx:id="btnHacer" mnemonicParsing="false" onAction="#reHacer" prefHeight="25.0" prefWidth="89.0" text="Rehacer" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </HBox.margin>
+            </VBox>
          </children>
       </HBox>
       <HBox id="ContenedorListas" alignment="TOP_CENTER" prefHeight="94.0" prefWidth="850.0">

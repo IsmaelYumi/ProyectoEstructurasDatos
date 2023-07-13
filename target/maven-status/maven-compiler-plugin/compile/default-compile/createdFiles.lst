@@ -6,6 +6,7 @@ Controlador\App.class
 Controlador\manejadorArchivos.class
 Modelo\DoubleCircleLinkedList.class
 Controlador\CreadorEmojisController$1.class
+Controlador\TipoComponente.class
 Modelo\List.class
 Controlador\CreadorEmojisController$2.class
 Controlador\RegisterController.class
