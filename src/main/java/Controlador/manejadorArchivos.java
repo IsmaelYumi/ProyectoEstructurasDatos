@@ -24,8 +24,6 @@ public class manejadorArchivos {
     {
         File carpetaPrincipal= new File(carpeta);
         File[] archivos = carpetaPrincipal.listFiles();
-        System.out.println(carpetaPrincipal);
-        System.out.println(Arrays.toString(archivos));
         if (archivos == null || archivos.length == 0) {
             System.out.println("La carpeta que quiere leer está vacía.");
         }

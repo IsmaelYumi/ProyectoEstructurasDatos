@@ -72,7 +72,7 @@ public class CreadorEmojisController<E> implements Initializable {
     @FXML
     private StackPane stackP;
    
-
+    private int puntero;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -142,6 +142,7 @@ public class CreadorEmojisController<E> implements Initializable {
          ContenedorLista.getChildren().clear();
          for(int i=0;i<arrDisplay.length;i++){
              //Peligroso
+             int valor= i;
              ImageView img=(ImageView) arrDisplay[i].getContent();
               img.setOnMouseClicked(  new EventHandler<MouseEvent>() {
              @Override
@@ -152,6 +153,7 @@ public class CreadorEmojisController<E> implements Initializable {
                 System.out.println(Lista);
                 añadirComponente(img, Lista);
                 actualizarConMapa();
+                puntero=valor;
              }
         });
              ContenedorLista.getChildren().add(img);
@@ -165,8 +167,11 @@ public class CreadorEmojisController<E> implements Initializable {
     void CambiarLista(ActionEvent event) {
         for(int i=0; i<arrDisplay.length;i++){
             arrDisplay[i]=arrDisplay[i].getNext();
+            
         }
-        
+        ImageView imgvx=(ImageView) arrDisplay[puntero].getContent();
+        añadirComponente(imgvx, Lista);
+        actualizarConMapa();
         actualizarVista();
          
     }
@@ -175,6 +180,9 @@ public class CreadorEmojisController<E> implements Initializable {
         for(int i =arrDisplay.length-1; i>=0;i--){
              arrDisplay[i]=arrDisplay[i].getPrevious();
         }
+        ImageView imgvx=(ImageView) arrDisplay[puntero].getContent();
+        añadirComponente(imgvx, Lista);
+        actualizarConMapa();
         actualizarVista();
     }
     
