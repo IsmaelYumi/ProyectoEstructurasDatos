@@ -13,18 +13,22 @@ import java.io.File;
 import javafx.scene.image.Image;
 import Modelo.DoubleCircleLinkedList;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -35,11 +39,16 @@ public class CreadorEmojisController<E> implements Initializable {
 
     /**
      * Initializes the controller class.
+     * 
      */
+    
+    private HashMap<String, ImageView> mapa = new HashMap<>();
+    
+    
      @FXML
     private HBox ContenedorLista;
     private ImageView ContenedorImagen=new ImageView();
-    private Image Imagenfoco;
+    private Image imagenFoco;
      
      final CircularNodeList[] arrDisplay= new CircularNodeList[5];
      String Lista="Caras";
@@ -59,6 +68,9 @@ public class CreadorEmojisController<E> implements Initializable {
     
     public  ToggleGroup tg = new ToggleGroup();
    
+    
+    @FXML
+    private StackPane stackP;
    
 
      
@@ -134,7 +146,12 @@ public class CreadorEmojisController<E> implements Initializable {
               img.setOnMouseClicked(  new EventHandler<MouseEvent>() {
              @Override
              public void handle(MouseEvent event) {
-                Imagenfoco=img.getImage();
+                imagenFoco=img.getImage();                
+                ImageView imgv= new ImageView(imagenFoco);
+                System.out.println(imagenFoco);
+                System.out.println(Lista);
+                añadirComponente(img, Lista);
+                actualizarConMapa();
              }
         });
              ContenedorLista.getChildren().add(img);
@@ -161,7 +178,86 @@ public class CreadorEmojisController<E> implements Initializable {
         actualizarVista();
     }
     
-    
+    void añadirComponente(ImageView img, String tipo) {
+        
+            ImageView actual= img;
+            ImageView copiedImageView = new ImageView();
+           copiedImageView.setImage(actual.getImage());
+           copiedImageView.setFitWidth(actual.getFitWidth());
+           copiedImageView.setFitHeight(actual.getFitHeight());
+           copiedImageView.setPreserveRatio(actual.isPreserveRatio());
+           
+           
+        if (tipo .equals("Bocas")) {
+            mapa.put("Boca", copiedImageView);
+
+        }
+        if ("Ojos".equals(tipo)) {
+            mapa.put("Ojos", copiedImageView);
+
+        }
+        if ("Caras".equals(tipo)) {
+            copiedImageView.setFitHeight(75);
+            copiedImageView.setFitWidth(75);
+            mapa.put("Cara", copiedImageView);
+        }
+        if (tipo.equals("Cejas") ){
+            mapa.put("Cejas", copiedImageView);
+
+        }
+        if (tipo.equals("Accesorios")) {
+            mapa.put("Accesorio", copiedImageView);
+        }
+    }
+
+    void actualizarConMapa() {
+
+        if (!stackP.getChildren().isEmpty()) {
+            stackP.getChildren().clear();
+        }
+        stackP.setAlignment(Pos.CENTER);
+
+        if (mapa.containsKey("Cara")) {
+            ImageView actual= mapa.get("Cara");
+          
+            stackP.getChildren().add(actual);
+        }
+ 
+        Pane pane = new Pane();
+        
+        ///Aquí hay que corregir a que salga a la altura de la boca, y si no está vacío no se ponga mal.
+        //Probablemnte sea mejor usar un anchorPane y definir los píxeles.
+        
+        if(mapa.containsKey("Ojos")){
+            ImageView actual= mapa.get("Ojos");
+            actual.relocate(100,80);
+            pane.getChildren().add(actual);
+
+        }
+        
+        if(mapa.containsKey("Boca")){
+            ImageView actual= mapa.get("Boca");
+            actual.relocate(100, 110);
+            pane.getChildren().add(actual);
+            
+        }
+        
+        if(mapa.containsKey("Accesorio")){
+            ImageView actual= mapa.get("Accesorio");
+            actual.relocate(100, 80);
+            pane.getChildren().add(actual);
+        } 
+        
+        if(mapa.containsKey("Cejas")){
+            ImageView actual= mapa.get("Cejas");
+            actual.relocate(100, 65);
+            pane.getChildren().add(actual);
+        }
+        
+        
+        stackP.getChildren().add(pane);
+        
+}
    
      
     }

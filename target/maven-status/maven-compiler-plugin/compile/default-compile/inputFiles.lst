@@ -1,21 +1,10 @@
-<<<<<<< HEAD
-C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\CreadorEmojisController.java
-C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\module-info.java
-C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\List.java
-C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\App.java
-C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\RegisterController.java
-C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\CircularNodeList.java
-C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\manejadorArchivos.java
-C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\LoguinController.java
-C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\DoubleCircleLinkedList.java
-=======
-C:\Users\Ismael\Documents\GitHub\ProyectoEstructurasDatos\src\main\java\Modelo\List.java
-C:\Users\Ismael\Documents\GitHub\ProyectoEstructurasDatos\src\main\java\Modelo\CircularNodeList.java
-C:\Users\Ismael\Documents\GitHub\ProyectoEstructurasDatos\src\main\java\Controlador\RegisterController.java
-C:\Users\Ismael\Documents\GitHub\ProyectoEstructurasDatos\src\main\java\Modelo\DoubleCircleLinkedList.java
-C:\Users\Ismael\Documents\GitHub\ProyectoEstructurasDatos\src\main\java\Controlador\App.java
-C:\Users\Ismael\Documents\GitHub\ProyectoEstructurasDatos\src\main\java\Controlador\CreadorEmojisController.java
-C:\Users\Ismael\Documents\GitHub\ProyectoEstructurasDatos\src\main\java\Controlador\LoguinController.java
-C:\Users\Ismael\Documents\GitHub\ProyectoEstructurasDatos\src\main\java\Controlador\manejadorArchivos.java
-C:\Users\Ismael\Documents\GitHub\ProyectoEstructurasDatos\src\main\java\module-info.java
->>>>>>> 9868fbe0bab19f00a7d03c6d7ec5c940c2198801
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\App.java
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\List.java
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\module-info.java
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\RegisterController.java
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\manejadorArchivos.java
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\CreadorEmojisController.java
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\CircularNodeList.java
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\TipoComponente.java
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\DoubleCircleLinkedList.java
+C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\LoguinController.java

@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="850.0" spacing="30.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.CreadorEmojisController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="850.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.CreadorEmojisController">
    <children>
-      <Label text="CREADOR DE EMOJIS">
+      <Label text="Creador de Emojis">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -19,8 +19,12 @@
             <Font name="Consolas" size="48.0" />
          </font>
       </Label>
-      <StackPane fx:id="rLst" prefHeight="150.0" prefWidth="200.0" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+      <HBox alignment="CENTER" prefHeight="250.0" prefWidth="850.0">
+         <children>
+            <StackPane fx:id="stackP" prefHeight="250.0" prefWidth="250.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="79.0" prefWidth="850.0" spacing="40.0">
          <children>
             <RadioButton fx:id="Caras" mnemonicParsing="false" text="Caras" />
             <RadioButton fx:id="Cejas" mnemonicParsing="false" text="Cejas" />
@@ -29,7 +33,7 @@
             <RadioButton fx:id="Bocas" mnemonicParsing="false" text="Bocas" />
          </children>
       </HBox>
-      <HBox id="ContenedorListas" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox id="ContenedorListas" alignment="TOP_CENTER" prefHeight="94.0" prefWidth="850.0">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
