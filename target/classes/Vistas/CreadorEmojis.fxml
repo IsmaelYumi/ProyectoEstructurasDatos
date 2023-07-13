@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="850.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.CreadorEmojisController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="850.0" spacing="20.0" style="-fx-background-color: #C7E4D9;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.CreadorEmojisController">
    <children>
       <Label text="Creador de Emojis">
          <VBox.margin>
-            <Insets />
+            <Insets top="15.0" />
          </VBox.margin>
          <font>
-            <Font name="Consolas" size="48.0" />
+            <Font name="Tw Cen MT Condensed Extra Bold" size="53.0" />
          </font>
       </Label>
       <HBox alignment="CENTER" prefHeight="250.0" prefWidth="850.0">
@@ -26,15 +26,37 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="79.0" prefWidth="850.0" spacing="40.0">
          <children>
-            <RadioButton fx:id="Caras" mnemonicParsing="false" text="Caras" />
-            <RadioButton fx:id="Cejas" mnemonicParsing="false" text="Cejas" />
-            <RadioButton fx:id="Accesorios" mnemonicParsing="false" text="Accesorios" />
-            <RadioButton fx:id="Ojos" mnemonicParsing="false" text="Ojos" />
-            <RadioButton fx:id="Bocas" mnemonicParsing="false" text="Bocas" />
+            <RadioButton fx:id="Caras" mnemonicParsing="false" text="Caras" textFill="#111111">
+               <font>
+                  <Font name="Comic Sans MS" size="16.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="Cejas" mnemonicParsing="false" text="Cejas">
+               <font>
+                  <Font name="Comic Sans MS" size="16.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="Accesorios" mnemonicParsing="false" text="Accesorios">
+               <font>
+                  <Font name="Comic Sans MS" size="17.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="Ojos" mnemonicParsing="false" text="Ojos">
+               <font>
+                  <Font name="Comic Sans MS" size="17.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="Bocas" mnemonicParsing="false" text="Bocas">
+               <font>
+                  <Font name="Comic Sans MS" size="17.0" />
+               </font></RadioButton>
             <VBox alignment="TOP_CENTER" prefHeight="79.0" prefWidth="80.0" spacing="10.0">
                <children>
-                  <Button fx:id="btnDeshacer" mnemonicParsing="false" onAction="#deshacer" prefHeight="25.0" prefWidth="86.0" text="Deshacer" />
-                  <Button fx:id="btnHacer" mnemonicParsing="false" onAction="#reHacer" prefHeight="25.0" prefWidth="89.0" text="Rehacer" />
+                  <Button id="windows" fx:id="btnDeshacer" mnemonicParsing="false" onAction="#deshacer" prefHeight="29.0" prefWidth="101.0" stylesheets="@../stylesheet.css" text="Deshacer">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button id="windows" fx:id="btnHacer" mnemonicParsing="false" onAction="#reHacer" prefHeight="25.0" prefWidth="89.0" stylesheets="@../stylesheet.css" text="Rehacer">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -49,13 +71,19 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#CambiarListaAtras" text="&lt;" />
+                  <Button id="windows" mnemonicParsing="false" onAction="#CambiarListaAtras" prefHeight="37.0" prefWidth="40.0" stylesheets="@../stylesheet.css" text="&lt;">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
                </children>
             </VBox>
             <HBox fx:id="ContenedorLista" alignment="CENTER" prefHeight="150.0" prefWidth="210.0" spacing="8.0" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#CambiarLista" text="&gt;" />
+                  <Button id="windows" mnemonicParsing="false" onAction="#CambiarLista" prefHeight="37.0" prefWidth="40.0" stylesheets="@../stylesheet.css" text="&gt;">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
                </children>
             </VBox>
          </children></HBox>
