@@ -57,6 +57,11 @@
                      <font>
                         <Font size="15.0" />
                      </font></Button>
+                  <Button id="windows" fx:id="btnExportar" mnemonicParsing="false" prefHeight="29.0" prefWidth="101.0" stylesheets="@../stylesheet.css" text="Exportar">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
                </children>
                <opaqueInsets>
                   <Insets />
