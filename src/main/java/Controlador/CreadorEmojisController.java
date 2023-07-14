@@ -12,6 +12,7 @@ import Modelo.CircularNodeList;
 import java.io.File;
 import javafx.scene.image.Image;
 import Modelo.DoubleCircleLinkedList;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +37,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 
 /**
@@ -63,6 +65,7 @@ public class CreadorEmojisController<E> implements Initializable {
     private RadioButton Bocas;
     @FXML
     private RadioButton Accesorios;
+    private DoubleCircleLinkedList<ImageView> ListaAccesorios;
 
     @FXML
     private RadioButton Caras;
@@ -143,14 +146,14 @@ public class CreadorEmojisController<E> implements Initializable {
         //     System.out.println(Imagenfoco.getUrl());
         //  }
         // });  
-        btnExportar.setOnAction(event -> exportarImagen(stackP));
+//        btnExportar.setOnAction(event -> exportarImagen(stackP));
     }
 
     public void CargarListas(String archivo) {
         //Crea las listas de manera Visible,la lista se supone q crea Imageviewers y lso pone en el conainer de la lista que es un Hbox , pero no funciona bien
         //falta implementar 
         String Path = "src/main/resources/Imagenes/" + archivo;
-        DoubleCircleLinkedList<ImageView> ListaAccesorios = manejadorArchivos.cargarArchivos(Path);
+        ListaAccesorios = manejadorArchivos.cargarArchivos(Path);
         for (int i = 0; i < 5; i++) {
             CircularNodeList<ImageView> referenciaNodo = ListaAccesorios.getByIndex(i);
 
@@ -336,19 +339,113 @@ public class CreadorEmojisController<E> implements Initializable {
 
     }
     
-        private void exportarImagen(StackPane stackPane) {
-        SnapshotParameters parameters = new SnapshotParameters();
-        parameters.setDepthBuffer(true);
-        Image snapshot = stackPane.snapshot(parameters, null);
+     //   private void exportarImagen(StackPane stackPane) {
+     //   SnapshotParameters parameters = new SnapshotParameters();
+     //   parameters.setDepthBuffer(true);
+     //   Image snapshot = stackPane.snapshot(parameters, null);
 
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG Files", "*.png"));
-        File file = fileChooser.showSaveDialog(null);
+     //   FileChooser fileChooser = new FileChooser();
+    //    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG Files", "*.png"));
+     //   File file = fileChooser.showSaveDialog(null);
 
-        if (file != null) {             
-            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
-            ImageIO.write(bufferedImage, "png", file);
-            System.out.println("La imagen ha sido exportada correctamente.");
+     //   if (file != null) {             
+     //       BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
+     //       ImageIO.write(bufferedImage, "png", file);
+     //       System.out.println("La imagen ha sido exportada correctamente.");
+     //   }
+        
+   // }
+        @FXML
+     void AgregarElemento(ActionEvent event){
+         Stage buscador= new Stage();
+         FileChooser selectorArchivos = new FileChooser();
+         selectorArchivos.getExtensionFilters().addAll(
+     new FileChooser.ExtensionFilter("Images Png Files", "*.png")
+    ,new FileChooser.ExtensionFilter("Image JPG Files", "*.jpg"),
+                 new FileChooser.ExtensionFilter("Image JPEG Files", "*.jpeg")
+);
+         File nuevaImagen=selectorArchivos.showOpenDialog(buscador);
+         try{
+         FileInputStream ruta= new FileInputStream(selectorArchivos.showOpenDialog(buscador));
+         Image imagen=new Image(ruta);
+         ImageView imv= new ImageView( imagen);
+         if (Lista.equals("Caras")) {
+             
+                        CargarListas("faces");
+                        ListaAccesorios.addLast(imv);
+                        actualizarVista();
+                    }
+                    if (Lista.equals("Cejas")) {
+                        CargarListas("eyebrows");
+                         ListaAccesorios.addLast(imv);
+                        actualizarVista();
+                    }
+                    if (Lista.equals("Accesorios")) {
+                        CargarListas("accessories");
+                         ListaAccesorios.addLast(imv);
+                        actualizarVista();
+                    }
+                    if (Lista.equals("Ojos")) {
+                        CargarListas("eyes");
+                         ListaAccesorios.addLast(imv);
+                        actualizarVista();
+                    }
+                    if (Lista.equals("Cejas")) {
+                        CargarListas("eyebrows");
+                         ListaAccesorios.addLast(imv);
+                        actualizarVista();
+                    }
+                    if (Lista.equals("Bocas")) {
+                        CargarListas("mouth");
+                         ListaAccesorios.addLast(imv);
+                        actualizarVista();
+                    }
+                    System.out.println("exito al cargar");
+
+   
+         
+         }catch(Exception ex){
+             System.out.println("fallo");
+             
+         }
+         
+     }
+     @FXML
+     void EliminarElemento(ActionEvent evento){
+         ImageView ImagenEliminar=new ImageView(imagenFoco);
+         String Path = "src/main/resources/Imagenes/";
+         if (Lista.equals("Caras")) {
+                        Path+="faces";
+                    }
+                    if (Lista.equals("Cejas")) {
+                        CargarListas("eyebrows");
+                        Path+="eyebrows";
+                        
+                    }
+                    if (Lista.equals("Accesorios")) {
+                        CargarListas("accessories");
+                        Path+="accessories";
+                        
+                    }
+                    if (Lista.equals("Ojos")) {
+                        Path+="eyes";
+                        
+                    }
+                    
+                    if (Lista.equals("Bocas")) {
+                        CargarListas("mouth");
+                        Path+="mouth";
+                        
+                    }
+                    
+         ListaAccesorios=manejadorArchivos.cargarArchivos(Path);
+         ListaAccesorios.delete(ImagenEliminar);
+         for (int i = 0; i < 5; i++) {
+            CircularNodeList<ImageView> referenciaNodo = ListaAccesorios.getByIndex(i);
+
+            arrDisplay[i] = referenciaNodo;
         }
-    }
+         actualizarVista();
+         System.out.println("Exito al eliminar");
+     }
 }   

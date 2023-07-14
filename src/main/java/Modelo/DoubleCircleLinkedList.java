@@ -33,11 +33,8 @@ public class DoubleCircleLinkedList<E> implements List<E> {
         throw new IndexOutOfBoundsException("Indice fuera de rango");      
     }
 
-    @Override
-    public boolean remover(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+  
+    
     @Override
     public boolean add(E element, int index) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
