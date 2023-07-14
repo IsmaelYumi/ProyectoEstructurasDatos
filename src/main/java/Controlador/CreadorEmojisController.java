@@ -444,7 +444,7 @@ public class CreadorEmojisController<E> implements Initializable {
 );
          File nuevaImagen=selectorArchivos.showOpenDialog(buscador);
          try{
-         FileInputStream ruta= new FileInputStream(selectorArchivos.showOpenDialog(buscador));
+         FileInputStream ruta= new FileInputStream(nuevaImagen);
          Image imagen=new Image(ruta);
          ImageView imv= new ImageView( imagen);
          if (Lista.equals("Caras")) {
