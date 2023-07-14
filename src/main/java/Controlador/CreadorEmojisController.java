@@ -12,12 +12,14 @@ import Modelo.CircularNodeList;
 import java.io.File;
 import javafx.scene.image.Image;
 import Modelo.DoubleCircleLinkedList;
+import java.util.Iterator;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Paths;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -30,6 +32,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
@@ -39,6 +42,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
+
 
 /**
  * FXML Controller class
@@ -91,6 +96,8 @@ public class CreadorEmojisController<E> implements Initializable {
     private Stack<HashMap<String, ImageView>> pilaHistorial = new Stack();
 
     private Stack<HashMap<String, ImageView>> pilaRehacer = new Stack();
+    @FXML
+    private Button btnExportar;
 
     @FXML
     private Button btnGuardar;
@@ -209,6 +216,7 @@ public class CreadorEmojisController<E> implements Initializable {
         actualizarConMapa();
         
         
+        btnExportar.setOnAction(event -> exportarImagen(stackP));
     }
 
     public void CargarListas(String archivo) {
@@ -401,8 +409,8 @@ public class CreadorEmojisController<E> implements Initializable {
         System.out.println("----------------------------------------------------------------------------------------------------------------");
 
     }
-
-    @FXML
+    
+     @FXML
     void guardarProyecto(ActionEvent event) {
         try {
             System.out.println("Se guardo como usuario ingresado a:");
@@ -431,6 +439,25 @@ public class CreadorEmojisController<E> implements Initializable {
         }
     }
     
-    
-
-}
+        private void exportarImagen(StackPane stackPane) {
+//        SnapshotParameters parameters = new SnapshotParameters();
+//        parameters.setDepthBuffer(true);
+//        Image snapshot = stackPane.snapshot(parameters, null);
+//
+//   
+//    
+//    
+//
+//
+//
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG Files", "*.png"));
+//        File file = fileChooser.showSaveDialog(null);
+//
+//        if (file != null) {             
+//            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
+//            ImageIO.write(bufferedImage, "png", file);
+//            System.out.println("La imagen ha sido exportada correctamente.");
+//        }
+    }
+}   
