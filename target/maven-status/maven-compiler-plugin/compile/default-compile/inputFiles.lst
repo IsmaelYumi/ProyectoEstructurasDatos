@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\App.java
 C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\List.java
 C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\module-info.java
@@ -8,3 +9,15 @@ C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\Cir
 C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\TipoComponente.java
 C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\DoubleCircleLinkedList.java
 C:\Users\Administrador\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\LoguinController.java
+=======
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\CreadorEmojisController.java
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\module-info.java
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\List.java
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\TipoComponente.java
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\App.java
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\RegisterController.java
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\CircularNodeList.java
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\manejadorArchivos.java
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Controlador\LoguinController.java
+C:\Users\Raul Leon\Desktop\ProyectoEstructurasDatos\src\main\java\Modelo\DoubleCircleLinkedList.java
+>>>>>>> e5687b5a407387d2ab6946fb47f94304c9212cd0
