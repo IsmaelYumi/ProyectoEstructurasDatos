@@ -12,6 +12,12 @@ import Modelo.CircularNodeList;
 import java.io.File;
 import javafx.scene.image.Image;
 import Modelo.DoubleCircleLinkedList;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -86,8 +92,70 @@ public class CreadorEmojisController<E> implements Initializable {
 
     private Stack<HashMap<String, ImageView>> pilaRehacer = new Stack();
 
+    @FXML
+    private Button btnGuardar;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        
+        try {
+            if (!manejadorArchivos.carpetaEsVacia(Paths.get("src/main/resources/Proyectos/" + LoguinController.usuarioValido + "_proyecto"))) {
+                System.out.println("Hay un proyecto guardado.");
+                FileInputStream file = new FileInputStream("src/main/resources/Proyectos/" + LoguinController.usuarioValido + "_proyecto/" + LoguinController.usuarioValido);
+                ObjectInputStream objeto = new ObjectInputStream(file);
+                
+                try {
+                    HashMap<String, String> mapaDeserealizado = (HashMap<String, String>) objeto.readObject();
+                    System.out.println("Se pudo leer el objeto.");
+                    
+                    
+                    Set<String> llaves= mapaDeserealizado.keySet();
+                    
+                    HashMap<String, ImageView> mapaSetear = new HashMap<>();
+                    
+                    Iterator<String> it= llaves.iterator();
+                    while(it.hasNext()){
+                        String llave= it.next();
+                        System.out.println(llave);
+                        String rutaImagen = mapaDeserealizado.get(llave);
+                        String[] arrRuta = rutaImagen.split("/");
+                        String nombreImagen= arrRuta[arrRuta.length-1];
+                        String nombreCarpeta= arrRuta[arrRuta.length-2];
+                        File file2= new File("/src/main/resources/Imagenes/"+nombreCarpeta+"/"+nombreImagen);
+                        String localUrl = file2.toURI().toURL().toString();
+                        Image imagencita = new Image(localUrl, 50,0,true,false);
+                        mapaSetear.put(llave,new ImageView(imagencita));
+                    }
+                    
+                    mapa= mapaSetear;
+                    System.out.println(mapa);
+       
+                    
+                    System.out.println("Se pudo cargar el proyecto del usuario.");
+                   
+                    
+                    
+                    
+                    
+                } catch (ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                    System.out.println("No se pudo leer el objeto.");
+                }
+                
+            } else {
+                System.out.println("No hay ningun proyecto guardado.");
+            }
+            
+            
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        
+        
+
         CargarListas("faces");
         actualizarVista();
         Bocas.setToggleGroup(tg);
@@ -137,7 +205,10 @@ public class CreadorEmojisController<E> implements Initializable {
         //     System.out.println(Imagenfoco.getUrl());
         //  }
         // });  
-
+        
+        actualizarConMapa();
+        
+        
     }
 
     public void CargarListas(String archivo) {
@@ -217,10 +288,10 @@ public class CreadorEmojisController<E> implements Initializable {
     @FXML
     boolean reHacer(ActionEvent event) {
         System.out.println(pilaRehacer);
-        if(!pilaRehacer.isEmpty()){
+        if (!pilaRehacer.isEmpty()) {
             HashMap mapaPopeado = pilaRehacer.pop();
             pilaHistorial.add(mapaPopeado);
-            mapa=pilaHistorial.peek();
+            mapa = pilaHistorial.peek();
             System.out.println("Se rehizo un cambio con éxito.");
             actualizarConMapa();
         }
@@ -275,14 +346,15 @@ public class CreadorEmojisController<E> implements Initializable {
             mapaTemporal.put(llave, mapa.get(llave));
         }
 
-        System.out.println(mapaTemporal);
         pilaHistorial.push(mapaTemporal);
-        System.out.println(pilaHistorial);
 
     }
 
     void actualizarConMapa() {
 
+        System.out.println(mapa);
+        
+        
         if (!stackP.getChildren().isEmpty()) {
             stackP.getChildren().clear();
         }
@@ -302,7 +374,7 @@ public class CreadorEmojisController<E> implements Initializable {
             ImageView actual = mapa.get("Ojos");
             actual.relocate(100, 80);
             pane.getChildren().add(actual);
-
+            
         }
 
         if (mapa.containsKey("Boca")) {
@@ -329,5 +401,36 @@ public class CreadorEmojisController<E> implements Initializable {
         System.out.println("----------------------------------------------------------------------------------------------------------------");
 
     }
+
+    @FXML
+    void guardarProyecto(ActionEvent event) {
+        try {
+            System.out.println("Se guardo como usuario ingresado a:");
+            System.out.println(LoguinController.usuarioValido);
+            FileOutputStream fileOut = new FileOutputStream("src/main/resources/Proyectos/" + LoguinController.usuarioValido + "_proyecto/" + LoguinController.usuarioValido);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+
+            HashMap<String, String> mapaSerializable = new HashMap<>();
+
+            //Copio al mapa: 
+            Set llavesMapa = mapa.keySet();
+            Iterator<String> it = llavesMapa.iterator();
+            while (it.hasNext()) {
+                String llave = it.next();
+                String url=
+                mapaSerializable.put(llave, mapa.get(llave).getImage().getUrl());
+            }
+
+            objectOut.writeObject(mapaSerializable);
+            System.out.println(mapaSerializable);
+            objectOut.close();
+            System.out.println("Proyecto guardado correctamente en su perfil, la proxima vez que inicie sesión se mostrará esta disposición de emoji");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
 
 }

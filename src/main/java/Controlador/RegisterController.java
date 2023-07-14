@@ -18,13 +18,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import java.io.*;
 
 /**
  *
  * @author Raul Leon
  */
-public class RegisterController implements Initializable{
-    
+public class RegisterController implements Initializable {
+
     private static final String USERS_FILE = "users.txt";
     public static Map<String, String> registeredUsers;
 
@@ -36,28 +37,27 @@ public class RegisterController implements Initializable{
     private Button registroButton;
     @FXML
     private Button atrasButton;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       registeredUsers = loadRegisteredUsers();
-       System.out.println(registeredUsers);
-       registroButton.setOnAction(e -> {
+        registeredUsers = loadRegisteredUsers();
+        System.out.println(registeredUsers);
+        registroButton.setOnAction(e -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
             registerUser(username, password);
         });
-       atrasButton.setOnAction(e -> {
-          try {
-              vistaLogin();
-          } catch (IOException ex) {
-              ex.printStackTrace();
-          }
-      });
+        atrasButton.setOnAction(e -> {
+            try {
+                vistaLogin();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
-    
-    
-    private static void registerUser(String username ,String password) {
-        
+
+    private static void registerUser(String username, String password) {
+
         if (registeredUsers.containsKey(username)) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
@@ -67,14 +67,25 @@ public class RegisterController implements Initializable{
             System.out.println("El usuario ya está registrado. Por favor, elija otro nombre de usuario.");
             return;
         }
-        
+
         registeredUsers.put(username, password);
+
+        File f = new File("src/main/resources/Proyectos/"+username+"_proyecto");
+
+        // check if the directory can be created 
+        // using the specified path name 
+        if (f.mkdir() == true) {
+            System.out.println("Directory has been created successfully");
+        } else {
+            System.out.println("Directory cannot be created");
+        }
+
         saveRegisteredUsers();
 
         System.out.println("El usuario ha sido registrado exitosamente.");
         System.out.println(registeredUsers);
     }
-    
+
     public static Map<String, String> loadRegisteredUsers() {
         Map<String, String> users = new HashMap<>();
 
@@ -92,7 +103,7 @@ public class RegisterController implements Initializable{
 
         return users;
     }
-    
+
     private static void saveRegisteredUsers() {
         try (FileWriter fileWriter = new FileWriter(USERS_FILE)) {
             for (Map.Entry<String, String> entry : registeredUsers.entrySet()) {
@@ -102,7 +113,7 @@ public class RegisterController implements Initializable{
             System.out.println("Error al guardar los usuarios registrados: " + e.getMessage());
         }
     }
-    
+
     public static Map<String, String> getRegisteredUsers() {
         return registeredUsers;
     }

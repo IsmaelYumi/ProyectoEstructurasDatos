@@ -10,8 +10,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import Modelo.CircularNodeList;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -25,6 +32,8 @@ import javafx.scene.control.TextField;
  */
 public class LoguinController implements Initializable {
 
+    public static String usuarioValido ;
+    
     @FXML
     private TextField usernameField;
     @FXML
@@ -63,7 +72,16 @@ public class LoguinController implements Initializable {
     private static void login(String username ,String password) throws IOException {
 
         if (registeredUsers.containsKey(username) && registeredUsers.get(username).equals(password)) {
+            
+            
+  
+            usuarioValido= username;
             App.setRoot("/Vistas/CreadorEmojis");
+            
+            
+           
+            
+            
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
@@ -73,4 +91,9 @@ public class LoguinController implements Initializable {
             System.out.println("Nombre de usuario o contraseña incorrectos.");
         }
     }
+    
+    private void leerMapaSerializable(String path){
+        
+    }
+
 }
