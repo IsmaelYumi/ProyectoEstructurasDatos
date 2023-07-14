@@ -135,11 +135,16 @@ public class CreadorEmojisController<E> implements Initializable {
                         String[] arrRuta = rutaImagen.split("/");
                         String nombreImagen= arrRuta[arrRuta.length-1];
                         String nombreCarpeta= arrRuta[arrRuta.length-2];
-                        File file2= new File("/src/main/resources/Imagenes/"+nombreCarpeta+"/"+nombreImagen);
+                        File file2= new File("/Imagenes/"+nombreCarpeta+"/"+nombreImagen);
                         String localUrl = file2.toURI().toURL().toString();
-                        Image imagencita = new Image(localUrl, 50,0,true,false);
-                        mapaSetear.put(llave,new ImageView(imagencita));
+                        System.out.println(localUrl);
+                        Image imagencita = new Image(localUrl);
+                        ImageView imgv= new ImageView(imagencita);
+                        
+                        mapaSetear.put(llave,imgv);
                     }
+                    
+                    
                     
                     mapa= mapaSetear;
                     System.out.println(mapa);
@@ -210,19 +215,13 @@ public class CreadorEmojisController<E> implements Initializable {
                 }
 
             }
-        });//Metodo para ponerle eventos a los image view pero no funciona
-        //ContenedorImagen.setOnMouseClicked(  new EventHandler<MouseEvent>() {
-        // @Override
-        // public void handle(MouseEvent event) {
-        //     Imagenfoco=ContenedorImagen.getImage();
-        //     System.out.println(Imagenfoco.getUrl());
-        //  }
-        // });  
+        });
 
 //        btnExportar.setOnAction(event -> exportarImagen(stackP));
 
         
-        actualizarConMapa();
+
+       // actualizarConMapa();
         
         
         btnExportar.setOnAction(event -> exportarImagen(stackP));
@@ -369,8 +368,6 @@ public class CreadorEmojisController<E> implements Initializable {
     }
 
     void actualizarConMapa() {
-
-        System.out.println(mapa);
         
         
         if (!stackP.getChildren().isEmpty()) {
@@ -380,14 +377,13 @@ public class CreadorEmojisController<E> implements Initializable {
 
         if (mapa.containsKey("Cara")) {
             ImageView actual = mapa.get("Cara");
-
+            System.out.println("Se actualizó");
             stackP.getChildren().add(actual);
         }
 
         Pane pane = new Pane();
 
-        ///Aquí hay que corregir a que salga a la altura de la boca, y si no está vacío no se ponga mal.
-        //Probablemnte sea mejor usar un anchorPane y definir los píxeles.
+
         if (mapa.containsKey("Ojos")) {
             ImageView actual = mapa.get("Ojos");
             actual.relocate(100, 80);
