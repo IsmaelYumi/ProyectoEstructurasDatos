@@ -16,25 +16,23 @@ public class DoubleCircleLinkedList<E> implements List<E> {
 
     private CircularNodeList<E> last;
     private int size;
-    
-    public int getSize(){
+
+    public int getSize() {
         return size;
     }
 
     @Override
     public CircularNodeList<E> getByIndex(int index) {
-        int contador=0;
-        for(CircularNodeList<E> nodo=last.getNext();nodo!=null ;nodo=nodo.getNext()){
-            if(contador==index){
+        int contador = 0;
+        for (CircularNodeList<E> nodo = last.getNext(); nodo != null; nodo = nodo.getNext()) {
+            if (contador == index) {
                 return nodo;
             }
             contador++;
         }
-        throw new IndexOutOfBoundsException("Indice fuera de rango");      
+        throw new IndexOutOfBoundsException("Indice fuera de rango");
     }
 
-  
-    
     @Override
     public boolean add(E element, int index) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -122,7 +120,7 @@ public class DoubleCircleLinkedList<E> implements List<E> {
         //quiere eliminar
         int contador = 0;
         CircularNodeList<E> nodoViajero = last.getNext();
-        while (!nodoViajero.getContent().equals(this) && contador < size) {
+        while (nodoViajero.getContent() != contentComp && contador < size) {
             nodoViajero = nodoViajero.getNext();
             contador++;
         }
@@ -133,12 +131,10 @@ public class DoubleCircleLinkedList<E> implements List<E> {
             CircularNodeList<E> nodoAnterior = nodoViajero.getPrevious();
             CircularNodeList<E> nodoPosterior = nodoViajero.getNext();
 
-           
             nodoAnterior.setNext(nodoPosterior);
             nodoPosterior.setPrevious(nodoAnterior);
-            
+
             //El nodo a eliminar no tendrá nada apuntandolo por lo que se lo llevará el garbage collector;
-            
             if (nodoEliminar.equals(last)) {
                 last = nodoAnterior;
             }
@@ -147,4 +143,38 @@ public class DoubleCircleLinkedList<E> implements List<E> {
         }
         return false;
     }
+
+    public boolean deleteByIndex(int index) {
+        int contador = 0;
+
+        for (CircularNodeList<E> nodoViajero = last.getNext(); contador != index; nodoViajero = nodoViajero.getNext()) {
+            System.out.println("Contador acumulandose:");
+            System.out.println(contador);
+            if (contador +1== index) {
+                
+                CircularNodeList<E> nodoEliminar = nodoViajero;
+
+                CircularNodeList<E> nodoAnterior = nodoViajero.getPrevious();
+                CircularNodeList<E> nodoPosterior = nodoViajero.getNext();
+
+                nodoAnterior.setNext(nodoPosterior);
+                nodoPosterior.setPrevious(nodoAnterior);
+                
+                
+                
+                
+                //El nodo a eliminar no tendrá nada apuntandolo por lo que se lo llevará el garbage collector;
+                if (nodoEliminar.equals(last)) {
+                    last = nodoAnterior;
+                }
+                size--;
+                return true;
+            }
+            contador++;
+        }
+
+        return false;
+
+    }
+
 }

@@ -75,7 +75,20 @@ public class CreadorEmojisController<E> implements Initializable {
     private RadioButton Bocas;
     @FXML
     private RadioButton Accesorios;
-    private DoubleCircleLinkedList<ImageView> ListaAccesorios;
+    private DoubleCircleLinkedList<ImageView> ListaEfectiva;
+    
+    private DoubleCircleLinkedList<ImageView> listaOjos=manejadorArchivos.cargarArchivos( "src/main/resources/Imagenes/eyes");
+    
+    private DoubleCircleLinkedList<ImageView> listaBocas=manejadorArchivos.cargarArchivos("src/main/resources/Imagenes/mouth");
+    
+    private DoubleCircleLinkedList<ImageView> listaAccesorios=manejadorArchivos.cargarArchivos("src/main/resources/Imagenes/accessories");
+    
+    private DoubleCircleLinkedList<ImageView> listaCaras=manejadorArchivos.cargarArchivos("src/main/resources/Imagenes/faces");
+    
+    private DoubleCircleLinkedList<ImageView> listaCejas=manejadorArchivos.cargarArchivos("src/main/resources/Imagenes/eyebrows");
+
+
+    
 
     @FXML
     private RadioButton Caras;
@@ -231,14 +244,35 @@ public class CreadorEmojisController<E> implements Initializable {
     public void CargarListas(String archivo) {
         //Crea las listas de manera Visible,la lista se supone q crea Imageviewers y lso pone en el conainer de la lista que es un Hbox , pero no funciona bien
         //falta implementar 
-        String Path = "src/main/resources/Imagenes/" + archivo;
-        ListaAccesorios = manejadorArchivos.cargarArchivos(Path);
-        for (int i = 0; i < 5; i++) {
-            CircularNodeList<ImageView> referenciaNodo = ListaAccesorios.getByIndex(i);
+        
+        if(archivo=="faces"){
+            ListaEfectiva= listaCaras;
+        }
+        if(archivo=="eyes"){
+            ListaEfectiva=listaOjos;
+            
+        }if(archivo== "eyebrows"){
+            ListaEfectiva=listaCejas;
+            
+        }if(archivo=="mouth"){
+            ListaEfectiva= listaBocas;
+            
+        }if(archivo=="accessories"){
+            ListaEfectiva= listaAccesorios;
+            
+        }
+            
+            
+            
+            
+            for (int i = 0; i < 5; i++) {
+            CircularNodeList<ImageView> referenciaNodo = ListaEfectiva.getByIndex(i);
 
             arrDisplay[i] = referenciaNodo;
 
         }
+            
+            
 
     }
 
@@ -450,32 +484,32 @@ public class CreadorEmojisController<E> implements Initializable {
          if (Lista.equals("Caras")) {
              
                         CargarListas("faces");
-                        ListaAccesorios.addLast(imv);
+                        ListaEfectiva.addLast(imv);
                         actualizarVista();
                     }
                     if (Lista.equals("Cejas")) {
                         CargarListas("eyebrows");
-                         ListaAccesorios.addLast(imv);
+                         ListaEfectiva.addLast(imv);
                         actualizarVista();
                     }
                     if (Lista.equals("Accesorios")) {
                         CargarListas("accessories");
-                         ListaAccesorios.addLast(imv);
+                         ListaEfectiva.addLast(imv);
                         actualizarVista();
                     }
                     if (Lista.equals("Ojos")) {
                         CargarListas("eyes");
-                         ListaAccesorios.addLast(imv);
+                         ListaEfectiva.addLast(imv);
                         actualizarVista();
                     }
                     if (Lista.equals("Cejas")) {
                         CargarListas("eyebrows");
-                         ListaAccesorios.addLast(imv);
+                         ListaEfectiva.addLast(imv);
                         actualizarVista();
                     }
                     if (Lista.equals("Bocas")) {
                         CargarListas("mouth");
-                         ListaAccesorios.addLast(imv);
+                         ListaEfectiva.addLast(imv);
                         actualizarVista();
                     }
                     System.out.println("exito al cargar");
@@ -492,39 +526,88 @@ public class CreadorEmojisController<E> implements Initializable {
      void EliminarElemento(ActionEvent evento){
          ImageView ImagenEliminar=new ImageView(imagenFoco);
          String Path = "src/main/resources/Imagenes/";
+         
+         String mapaElimino= "";
          if (Lista.equals("Caras")) {
                         Path+="faces";
+                        mapaElimino="Cara";
                     }
                     if (Lista.equals("Cejas")) {
                         CargarListas("eyebrows");
                         Path+="eyebrows";
+                        mapaElimino= "Cejas";
+                        
                         
                     }
                     if (Lista.equals("Accesorios")) {
                         CargarListas("accessories");
                         Path+="accessories";
+                        mapaElimino= "Accesorio";
+                        
                         
                     }
                     if (Lista.equals("Ojos")) {
                         Path+="eyes";
+                        mapaElimino= "Ojos";
                         
                     }
                     
                     if (Lista.equals("Bocas")) {
                         CargarListas("mouth");
                         Path+="mouth";
+                        mapaElimino="Boca";
+                        
                         
                     }
-                    
-         ListaAccesorios=manejadorArchivos.cargarArchivos(Path);
-         ListaAccesorios.delete(ImagenEliminar);
-         for (int i = 0; i < 5; i++) {
-            CircularNodeList<ImageView> referenciaNodo = ListaAccesorios.getByIndex(i);
+                             
+         
+         String rutaImagen= ImagenEliminar.getImage().getUrl();
+         
+         String[] arrPalabras= rutaImagen.split("/");
+         
+         String nombreArchivo= arrPalabras[arrPalabras.length-1];
+         
+         int contador= 0;
 
-            arrDisplay[i] = referenciaNodo;
+          System.out.println(ListaEfectiva.getSize());
+          
+         for(int i=0 ; i<ListaEfectiva.getSize();i++){
+             
+             String rutaIterando=ListaEfectiva.getByIndex(i).getContent().getImage().getUrl();
+             
+              String[] arrPalabrasRuta= rutaIterando.split("/");
+              
+              if(arrPalabrasRuta[arrPalabrasRuta.length-1].equals(nombreArchivo)){
+                   System.out.println("Valor en el que tienen misma imagen: "+ i);
+                  System.out.println("El valor del if: ");
+                  System.out.println(arrPalabrasRuta[arrPalabrasRuta.length-1].equals(nombreArchivo));
+                  System.out.println(arrPalabrasRuta[arrPalabrasRuta.length-1]);
+                  System.out.println(nombreArchivo);  
+                  System.out.println("Si es que se eliminó?:");
+                  boolean elminacion= ListaEfectiva.deleteByIndex(i+1);
+                  mapa.remove(mapaElimino);
+                  System.out.println(elminacion);
+                  
+              }         
+              
+              contador++;
+         }
+         
+         
+         for (int j= 0; j < 5; j++) {
+             
+            CircularNodeList<ImageView> referenciaNodo = ListaEfectiva.getByIndex(j);
+            arrDisplay[j] = referenciaNodo;
+            
         }
+         
+         
+         
+         
          actualizarVista();
-         System.out.println("Exito al eliminar");
+         actualizarConMapa();
+                 
+                 
      }
 
      @FXML
