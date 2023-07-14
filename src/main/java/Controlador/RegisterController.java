@@ -81,7 +81,12 @@ public class RegisterController implements Initializable {
         }
 
         saveRegisteredUsers();
-
+        
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Advertencia");
+        alert.setHeaderText(null);
+        alert.setContentText("El usuario ha sido registrado exitosamente.");
+        alert.showAndWait();
         System.out.println("El usuario ha sido registrado exitosamente.");
         System.out.println(registeredUsers);
     }
