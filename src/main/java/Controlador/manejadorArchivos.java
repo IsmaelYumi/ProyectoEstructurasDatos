@@ -6,7 +6,11 @@ package Controlador;
 
 import Modelo.DoubleCircleLinkedList;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import javafx.scene.image.Image;
@@ -49,6 +53,11 @@ public class manejadorArchivos {
     }
     
     
+    public static boolean carpetaEsVacia(final Path directory) throws IOException {
+    try(DirectoryStream<Path> dirStream = Files.newDirectoryStream(directory)) {
+        return !dirStream.iterator().hasNext();
+    }
+}
     
     
 }
