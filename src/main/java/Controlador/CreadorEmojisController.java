@@ -234,7 +234,7 @@ public class CreadorEmojisController<E> implements Initializable {
 
         
 
-       // actualizarConMapa();
+        actualizarConMapa();
         
         
         btnExportar.setOnAction(event -> exportarImagen(stackP));

@@ -83,7 +83,7 @@ public class LoguinController implements Initializable {
             
             
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Advertencia");
             alert.setHeaderText(null);
             alert.setContentText("Nombre de usuario o contraseña incorrectos.");

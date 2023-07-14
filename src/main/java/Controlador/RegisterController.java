@@ -59,7 +59,7 @@ public class RegisterController implements Initializable {
     private static void registerUser(String username, String password) {
 
         if (registeredUsers.containsKey(username)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Advertencia");
             alert.setHeaderText(null);
             alert.setContentText("El usuario ya está registrado. Por favor, elija otro nombre de usuario.");
@@ -81,8 +81,7 @@ public class RegisterController implements Initializable {
         }
 
         saveRegisteredUsers();
-        
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Advertencia");
         alert.setHeaderText(null);
         alert.setContentText("El usuario ha sido registrado exitosamente.");
